@@ -1,5 +1,8 @@
 # Mac Development Ansible Playbook
-### https://raw.githubusercontent.com/lordmuffin/devops-setup/master/automatedinstall/basic-install.sh
+```
+curl -sSL https://raw.githubusercontent.com/lordmuffin/devops-setup/master/automatedinstall/basic-install.sh | sudo bash "$@"
+
+```
 [![Build Status](https://travis-ci.org/geerlingguy/mac-dev-playbook.svg?branch=master)](https://travis-ci.org/geerlingguy/mac-dev-playbook)
 
 This playbook installs and configures most of the software I use on my Mac for web and software development. Some things in macOS are slightly difficult to automate, so I still have some manual installation steps, but at least it's all documented here.
