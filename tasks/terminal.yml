@@ -1,0 +1,15 @@
+---
+# Custom Terminal theme.
+
+- name: Install zprezto
+  shell: |
+    setopt EXTENDED_GLOB
+    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+      ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    done
+  changed_when: false
+
+- name: Ensure custom Terminal profile is added.
+  shell: chsh -s /bin/zsh
+  changed_when: false
+    # when: "'JJG-Term' not in terminal_theme.stdout"
