@@ -60,7 +60,7 @@ install_xcode() {
     grep "\*.*Command Line" |
     head -n 1 | awk -F"*" '{print $2}' |
     sed -e 's/^ *//' |
-    tr -d '\n')
+    tr -d '\n'
   softwareupdate -i "$PROD" --verbose
 }
 
