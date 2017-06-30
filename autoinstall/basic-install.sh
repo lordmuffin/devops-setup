@@ -202,7 +202,7 @@ main() {
   fi
 
     # Clone/Update the repos
-    clone_or_update_repos
+    clone_repo
     install_xcode | tee ${tmpLog}
     ansible-playbook main.yml -i inventory -K | tee ${tmpLog}
 
