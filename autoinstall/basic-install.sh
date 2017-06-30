@@ -231,3 +231,4 @@ main() {
   echo "::: done."
   displayFinalMessage
 }
+main
