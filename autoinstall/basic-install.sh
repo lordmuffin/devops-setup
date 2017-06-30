@@ -23,9 +23,8 @@ instalLogLoc=/etc/pihole/install.log
 setupVars=/etc/pihole/setupVars.conf
 lighttpdConfig=/etc/lighttpd/lighttpd.conf
 
-webInterfaceGitUrl="https://github.com/pi-hole/AdminLTE.git"
+remoteRepo="https://github.com/lordmuffin/devops-setup.git"
 webInterfaceDir="/var/www/html/admin"
-piholeGitUrl="https://github.com/pi-hole/pi-hole.git"
 PI_HOLE_LOCAL_REPO="/etc/.pihole"
 PI_HOLE_FILES=(chronometer list piholeDebug piholeLogFlush setupLCD update version gravity uninstall webpage)
 PI_HOLE_INSTALL_DIR="/opt/pihole"
@@ -66,35 +65,10 @@ install_xcode() {
 
 show_ascii_logo() {
   echo "
-  \
-  \\
-  \\\
+  :::
   Andrew's Script.
-  ///
-  //
-  /
+  :::
 "
-}
-
-
-is_repo() {
-  # Use git to check if directory is currently under VCS, return the value 128
-  # if directory is not a repo. Return 1 if directory does not exist.
-  local directory="${1}"
-  local curdir
-  local rc
-
-  curdir="${PWD}"
-  if [[ -d "${directory}" ]]; then
-    # git -C is not used here to support git versions older than 1.8.4
-    cd "${directory}"
-    git status --short &> /dev/null || rc=$?
-  else
-    # non-zero return code if directory does not exist
-    rc=1
-  fi
-  cd "${curdir}"
-  return "${rc:-0}"
 }
 
 make_repo() {
@@ -110,70 +84,6 @@ make_repo() {
   echo " done!"
   return 0
 }
-
-update_repo() {
-  local directory="${1}"
-  local curdir
-
-  curdir="${PWD}"
-  cd "${directory}" &> /dev/null || return 1
-  # Pull the latest commits
-  echo -n ":::    Updating repo in ${1}..."
-  git stash --all --quiet &> /dev/null || true # Okay for stash failure
-  git clean --force -d || true # Okay for already clean directory
-  git pull --quiet &> /dev/null || return $?
-  echo " done!"
-  cd "${curdir}" &> /dev/null || return 1
-  return 0
-}
-
-getGitFiles() {
-  # Setup git repos for directory and repository passed
-  # as arguments 1 and 2
-  local directory="${1}"
-  local remoteRepo="${2}"
-  echo ":::"
-  echo "::: Checking for existing repository..."
-  if is_repo "${directory}"; then
-    update_repo "${directory}" || { echo "*** Error: Could not update local repository. Contact support."; exit 1; }
-    echo " done!"
-  else
-    make_repo "${directory}" "${remoteRepo}" || { echo "Unable to clone repository, please contact support"; exit 1; }
-    echo " done!"
-  fi
-  return 0
-}
-
-resetRepo() {
-  local directory="${1}"
-
-  cd "${directory}" &> /dev/null || return 1
-  echo -n ":::    Resetting repo in ${1}..."
-  git reset --hard &> /dev/null || return $?
-  echo " done!"
-  return 0
-}
-
-welcomeDialogs() {
-  # Display the welcome dialog
-  whiptail --msgbox --backtitle "Welcome" --title "Pi-hole automated installer" "\n\nThis installer will transform your device into a network-wide ad blocker!" ${r} ${c}
-
-  # Support for a part-time dev
-  whiptail --msgbox --backtitle "Plea" --title "Free and open source" "\n\nThe Pi-hole is free, but powered by your donations:  http://pi-hole.net/donate" ${r} ${c}
-
-  # Explain the need for a static address
-  whiptail --msgbox --backtitle "Initiating network interface" --title "Static IP Needed" "\n\nThe Pi-hole is a SERVER so it needs a STATIC IP ADDRESS to function properly.
-
-In the next section, you can choose to use your current network settings (DHCP) or to manually edit them." ${r} ${c}
-}
-
-
-displayFinalMessage() {
-
-  # Final completion message to user
-  whiptail --msgbox --backtitle "Make it so." --title "Installation Complete!"
-}
-
 
 
 main() {
@@ -202,12 +112,11 @@ main() {
   fi
 
     # Clone/Update the repos
-    clone_repo
+    make_repo
     install_xcode | tee ${tmpLog}
     ansible-playbook main.yml -i inventory -K | tee ${tmpLog}
 
 
   echo "::: done."
-  displayFinalMessage
 }
 main
