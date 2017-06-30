@@ -188,63 +188,11 @@ welcomeDialogs() {
 In the next section, you can choose to use your current network settings (DHCP) or to manually edit them." ${r} ${c}
 }
 
-verifyFreeDiskSpace() {
-
-  # 50MB is the minimum space needed (45MB install (includes web admin bootstrap/jquery libraries etc) + 5MB one day of logs.)
-  # - Fourdee: Local ensures the variable is only created, and accessible within this function/void. Generally considered a "good" coding practice for non-global variables.
-  echo "::: Verifying free disk space..."
-  local required_free_kilobytes=51200
-  local existing_free_kilobytes=$(df -Pk | grep -m1 '\/$' | awk '{print $4}')
-
-  # - Unknown free disk space , not a integer
-  if ! [[ "${existing_free_kilobytes}" =~ ^([0-9])+$ ]]; then
-    echo "::: Unknown free disk space!"
-    echo "::: We were unable to determine available free disk space on this system."
-    echo "::: You may override this check and force the installation, however, it is not recommended"
-    echo "::: To do so, pass the argument '--i_do_not_follow_recommendations' to the install script"
-    echo "::: eg. curl -L https://install.pi-hole.net | bash /dev/stdin --i_do_not_follow_recommendations"
-    exit 1
-  # - Insufficient free disk space
-  elif [[ ${existing_free_kilobytes} -lt ${required_free_kilobytes} ]]; then
-    echo "::: Insufficient Disk Space!"
-    echo "::: Your system appears to be low on disk space. Pi-hole recommends a minimum of $required_free_kilobytes KiloBytes."
-    echo "::: You only have ${existing_free_kilobytes} KiloBytes free."
-    echo "::: If this is a new install you may need to expand your disk."
-    echo "::: Try running 'sudo raspi-config', and choose the 'expand file system option'"
-    echo "::: After rebooting, run this installation again. (curl -L https://install.pi-hole.net | bash)"
-
-    echo "Insufficient free space, exiting..."
-    exit 1
-  fi
-}
 
 displayFinalMessage() {
 
-  if [[ ${#1} -gt 0 ]] ; then
-    pwstring="$1"
-  elif [[ $(grep 'WEBPASSWORD' -c /etc/pihole/setupVars.conf) -gt 0 ]]; then
-    pwstring="unchanged"
-  else
-    pwstring="NOT SET"
-  fi
-
-   if [[ ${INSTALL_WEB} == true ]]; then
-       additional="View the web interface at http://pi.hole/admin or http://${IPV4_ADDRESS%/*}/admin
-
-Your Admin Webpage login password is ${pwstring}"
-   fi
-
   # Final completion message to user
-  whiptail --msgbox --backtitle "Make it so." --title "Installation Complete!" "Configure your devices to use the Pi-hole as their DNS server using:
-
-IPv4:	${IPV4_ADDRESS%/*}
-IPv6:	${IPV6_ADDRESS:-"Not Configured"}
-
-If you set a new IP address, you should restart the Pi.
-
-The install log is in /etc/pihole.
-
-${additional}" ${r} ${c}
+  whiptail --msgbox --backtitle "Make it so." --title "Installation Complete!"
 }
 
 
@@ -274,35 +222,6 @@ main() {
     fi
   fi
 
-  # Check for supported distribution
-  distro_check
-
-  # Check arguments for the undocumented flags
-  for var in "$@"; do
-    case "$var" in
-      "--reconfigure"  ) reconfigure=true;;
-      "--i_do_not_follow_recommendations"   ) skipSpaceCheck=false;;
-      "--unattended"     ) runUnattended=true;;
-    esac
-  done
-
-  if [[ -f ${setupVars} ]]; then
-    if [[ "${runUnattended}" == true ]]; then
-      echo "::: --unattended passed to install script, no whiptail dialogs will be displayed"
-      useUpdateVars=true
-    else
-      update_dialogs
-    fi
-  fi
-
-  # Start the installer
-  # Verify there is enough disk space for the install
-  if [[ "${skipSpaceCheck}" == true ]]; then
-    echo "::: --i_do_not_follow_recommendations passed to script, skipping free disk space verification!"
-  else
-    verifyFreeDiskSpace
-  fi
-
     # Clone/Update the repos
     clone_or_update_repos
     install_xcode | tee ${tmpLog}
@@ -310,41 +229,5 @@ main() {
 
 
   echo "::: done."
-
-  if [[ "${useUpdateVars}" == false ]]; then
-      displayFinalMessage "${pw}"
-  fi
-
-  echo ":::"
-  if [[ "${useUpdateVars}" == false ]]; then
-    echo "::: Installation Complete! Configure your devices to use the Pi-hole as their DNS server using:"
-    echo ":::     ${IPV4_ADDRESS%/*}"
-    echo ":::     ${IPV6_ADDRESS}"
-    echo ":::"
-    echo "::: If you set a new IP address, you should restart the Pi."
-    if [[ ${INSTALL_WEB} == true ]]; then
-      echo "::: View the web interface at http://pi.hole/admin or http://${IPV4_ADDRESS%/*}/admin"
-    fi
-  else
-    echo "::: Update complete!"
-  fi
-
-  if [[ ${INSTALL_WEB} == true ]]; then
-    if (( ${#pw} > 0 )) ; then
-      echo ":::"
-      echo "::: Note: As security measure a password has been installed for your web interface"
-      echo "::: The currently set password is"
-      echo ":::                                ${pw}"
-      echo ":::"
-      echo "::: You can always change it using"
-      echo ":::                                pihole -a -p"
-    fi
-  fi
-
-  echo ":::"
-  echo "::: The install log is located at: /etc/pihole/install.log"
+  displayFinalMessage
 }
-
-if [[ "${PH_TEST}" != true ]] ; then
-  main "$@"
-fi
