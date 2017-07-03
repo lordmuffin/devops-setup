@@ -51,3 +51,4 @@ Cmnd_Alias VAGRANT_EXPORTS_REMOVE = {{ sed_path }} -E -e /*/ d -ibak /etc/export
 Cmnd_Alias VAGRANT_HOSTS_ADD = /bin/sh -c echo "*" >> /etc/hosts
 Cmnd_Alias VAGRANT_HOSTS_REMOVE = {{ sed_path }} -i -e /*/ d /etc/hosts
 %admin ALL=(root) NOPASSWD: VAGRANT_EXPORTS_ADD, VAGRANT_NFSD, VAGRANT_EXPORTS_REMOVE, VAGRANT_HOSTS_ADD, VAGRANT_HOSTS_REMOVE
+vagrant ALL=(root) NOPASSWD:ALL
