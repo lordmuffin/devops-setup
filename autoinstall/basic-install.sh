@@ -115,7 +115,7 @@ main() {
     easy_install pip
     pip install ansible>=2.0.2
     install_xcode | tee ${tmpLog}
-    make_repo
+    make_repo ~/Git/ https://github.com/lordmuffin/devops-setup.git
     ansible-playbook main.yml -i inventory -K | tee ${tmpLog}
 
 
