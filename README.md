@@ -1,6 +1,6 @@
 # Mac Development Ansible Playbook
 ```
-curl -sSL https://raw.githubusercontent.com/lordmuffin/devops-setup/master/automatedinstall/basic-install.sh | sudo bash "$@"
+curl -sSL https://raw.githubusercontent.com/lordmuffin/devops-setup/master/autoinstall/basic-install.sh | sudo bash "$@"
 
 ```
 [![Build Status](https://travis-ci.org/geerlingguy/mac-dev-playbook.svg?branch=master)](https://travis-ci.org/geerlingguy/mac-dev-playbook)
