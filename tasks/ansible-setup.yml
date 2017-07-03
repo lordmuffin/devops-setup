@@ -10,8 +10,9 @@
     state: directory
   become: yes
 
-- name: Symlink /usr/local/etc/ansible to /etc/ansible.
+# Update from /usr/local/etc/ansible - Old Version?
+- name: Symlink /usr/local/bin/ansible to /etc/ansible.
   file:
     src: /etc/ansible
-    path: /usr/local/etc/ansible
+    path: /usr/local/bin/ansible
     state: link
