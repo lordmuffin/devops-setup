@@ -11,8 +11,8 @@
   become: yes
 
 # Update from /usr/local/etc/ansible - Old Version?
-- name: Symlink /usr/local/bin/ansible to /etc/ansible.
-  file:
-    src: /etc/ansible
-    path: /usr/local/bin/ansible
-    state: link
+# - name: Symlink /usr/local/bin/ansible to /etc/ansible.
+#   file:
+#     src: /etc/ansible
+#     path: /usr/local/bin/ansible
+#     state: link
