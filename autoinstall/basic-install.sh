@@ -122,7 +122,7 @@ main() {
     make_repo ~/Git/devops-setup https://github.com/lordmuffin/devops-setup.git
     cd ~/Git/devops-setup
     ansible-galaxy install -r requirements.yml
-    ansible-playbook main.yml -i inventory -K --limit | tee ${tmpLog}
+    ansible-playbook main.yml -i inventory -K | tee ${tmpLog}
 
 
   echo "::: done."
