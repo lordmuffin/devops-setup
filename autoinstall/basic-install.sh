@@ -112,7 +112,8 @@ main() {
   fi
 
     # Clone/Update the repos
-
+    easy_install pip
+    pip install ansible>=2.0.2
     install_xcode | tee ${tmpLog}
     ansible-playbook main.yml -i inventory -K | tee ${tmpLog}
 
