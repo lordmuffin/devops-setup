@@ -3,6 +3,7 @@
 - name: Install homebrew applications
   shell: "{{ osx_script }}"
   changed_when: false
+  become_user: root
 
 - homebrew:
     name: "{{items}}"
