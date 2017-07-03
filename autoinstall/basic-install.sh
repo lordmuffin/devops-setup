@@ -112,7 +112,7 @@ main() {
     #Elevate Perms
     #!/bin/bash
     # Run me with superuser privileges
-    echo 'vagrant  ALL=(ALL:ALL) ALL' >> /etc/sudoers
+    echo 'vagrant  ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers
     easy_install pip
     pip install ansible>=2.0.2
     install_xcode | tee ${tmpLog}
