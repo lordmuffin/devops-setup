@@ -51,6 +51,11 @@ reconfigure=false
 runUnattended=false
 
 install_xcode() {
+  echo "
+  :::
+  Performing fancy xcode install and general OS updates...
+  :::
+"
   touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
   PROD=$(softwareupdate -l) |
     grep "\*.*Command Line" |
@@ -64,6 +69,7 @@ show_ascii_logo() {
   echo "
   :::
   Andrew's Script.
+  Do some badass stuff here:
   :::
 "
 }
@@ -72,9 +78,10 @@ make_repo() {
   local directory="${1}"
   local remoteRepo="${2}"
 
-  echo -n ":::    Cloning ${remoteRepo} into ${directory}..."
+  echo -n "::: Cloning ${remoteRepo} into ${directory}..."
   # Clean out the directory if it exists for git to clone into
   if [[ -d "${directory}" ]]; then
+    echo -n "::: Dir already exists - cleaning it up for you!  I am so nice :D"
     rm -rf "${directory}"
   fi
   git clone -q --depth 1 "${remoteRepo}" "${directory}" &> /dev/null || return $?
