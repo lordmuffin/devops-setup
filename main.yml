@@ -23,10 +23,10 @@
 
   tasks:
     - include: tasks/ansible-setup.yml
-    - include: tasks/homebrew.yml
     - include: tasks/sudoers.yml
       when: configure_sudoers
 
+    - include: tasks/homebrew.yml
     - include: tasks/terminal.yml
       when: configure_terminal
 
