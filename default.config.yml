@@ -8,7 +8,7 @@ configure_osx: yes
 
 dotfiles_repo: https://github.com/lordmuffin/dotfiles.git
 dotfiles_repo_accept_hostkey: yes
-dotfiles_repo_local_destination: ~/Dropbox/Development/GitHub/dotfiles
+dotfiles_repo_local_destination: ~/Git/dotfiles
 dotfiles_files:
   - .bash_profile
   - .gitignore
@@ -75,7 +75,7 @@ mas_installed_apps: []
 mas_email: ""
 mas_password: ""
 
-osx_script: "~/.osx --no-restart"
+osx_script: "~/Git/dotfiles/.osx --no-restart"
 
 # Install packages from other package managers.
 # Note: You are responsible for making sure the required package managers are
