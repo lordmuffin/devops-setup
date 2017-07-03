@@ -112,13 +112,17 @@ main() {
   fi
 
     # Clone/Update the repos
+    #Elevate Perms
+    #!/bin/bash
+    # Run me with superuser privileges
+    echo 'vagrant  ALL=(ALL:ALL) ALL' >> /etc/sudoers
     easy_install pip
     pip install ansible>=2.0.2
     install_xcode | tee ${tmpLog}
     make_repo ~/Git/devops-setup https://github.com/lordmuffin/devops-setup.git
     cd ~/Git/devops-setup
     ansible-galaxy install -r requirements.yml
-    ansible-playbook main.yml -i inventory -K | tee ${tmpLog}
+    ansible-playbook main.yml -i inventory -K --limit | tee ${tmpLog}
 
 
   echo "::: done."
