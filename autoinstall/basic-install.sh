@@ -18,10 +18,7 @@
 
 set -e
 ######## VARIABLES #########
-tmpLog=/tmp/pihole-install.log
-instalLogLoc=/etc/pihole/install.log
-setupVars=/etc/pihole/setupVars.conf
-lighttpdConfig=/etc/lighttpd/lighttpd.conf
+tmpLog=/tmp/devops-setup.log
 
 remoteRepo="https://github.com/lordmuffin/devops-setup.git"
 webInterfaceDir="/var/www/html/admin"
