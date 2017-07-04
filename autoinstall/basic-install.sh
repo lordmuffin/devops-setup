@@ -1,134 +1,70 @@
-#!/usr/bin/env bash
-# Pi-hole: A black hole for Internet advertisements
-# (c) 2017 Pi-hole, LLC (https://pi-hole.net)
-# Network-wide ad blocking via your own hardware.
-#
-# Installs Pi-hole
-#
-# This file is copyright under the latest version of the EUPL.
-# Please see LICENSE file for your rights under this license.
+#!/bin/sh
 
-
-
-# pi-hole.net/donate
+# This script bootstraps a OSX laptop for development
+# to a point where we can run Ansible on localhost. It:
+#  1. Installs:
+#    - xcode
+#    - homebrew
+#    - ansible (via brew)
+#    - a few ansible galaxy playbooks (zsh, homebrew, cask etc)
+#  2. Kicks off the ansible playbook:
+#    - main.yml
 #
-# Install with this command (from your Pi):
-#
-# curl -L install.pi-hole.net | bash
+# It begins by asking for your sudo password:
+
+fancy_echo() {
+  local fmt="$1"; shift
+
+  # shellcheck disable=SC2059
+  printf "\n$fmt\n" "$@"
+}
+
+fancy_echo "Boostrapping ..."
+
+trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
 set -e
-######## VARIABLES #########
-tmpLog=/tmp/devops-setup.log
 
-remoteRepo="https://github.com/lordmuffin/devops-setup.git"
-webInterfaceDir="/var/www/html/admin"
-PI_HOLE_LOCAL_REPO="/etc/.pihole"
-PI_HOLE_FILES=(chronometer list piholeDebug piholeLogFlush setupLCD update version gravity uninstall webpage)
-PI_HOLE_INSTALL_DIR="/opt/pihole"
-useUpdateVars=false
+# Here we go.. ask for the administrator password upfront and run a
+# keep-alive to update existing `sudo` time stamp until script has finished
+# sudo -v
+# while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-IPV4_ADDRESS=""
-IPV6_ADDRESS=""
-QUERY_LOGGING=true
-INSTALL_WEB=true
+# Ensure Apple's command line tools are installed
+if ! command -v cc >/dev/null; then
+  fancy_echo "Installing xcode ..."
+  xcode-select --install
+else
+  fancy_echo "Xcode already installed. Skipping."
+fi
 
+if ! command -v brew >/dev/null; then
+  fancy_echo "Installing Homebrew..."
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null
+else
+  fancy_echo "Homebrew already installed. Skipping."
+fi
 
-# Find the rows and columns will default to 80x24 is it can not be detected
-screen_size=$(stty size 2>/dev/null || echo 24 80)
-rows=$(echo "${screen_size}" | awk '{print $1}')
-columns=$(echo "${screen_size}" | awk '{print $2}')
+# [Install Ansible](http://docs.ansible.com/intro_installation.html).
+if ! command -v ansible >/dev/null; then
+  fancy_echo "Installing Ansible ..."
+  brew install ansible
+else
+  fancy_echo "Ansible already installed. Skipping."
+fi
 
-# Divide by two so the dialogs take up half of the screen, which looks nice.
-r=$(( rows / 2 ))
-c=$(( columns / 2 ))
-# Unless the screen is tiny
-r=$(( r < 20 ? 20 : r ))
-c=$(( c < 70 ? 70 : c ))
+# Clone the repository to your local drive.
+if [ -d "./laptop" ]; then
+  fancy_echo "Laptop repo dir exists. Removing ..."
+  rm -rf ./laptop/
+fi
+fancy_echo "Cloning laptop repo ..."
+git clone https://github.com/lordmuffin/devops-setup.git
+git clone https://github.com/lordmuffin/dotfiles.git
 
-######## Undocumented Flags. Shhh ########
-skipSpaceCheck=false
-reconfigure=false
-runUnattended=false
+fancy_echo "Changing to laptop repo dir ..."
+cd ~/Git/devops-setup
 
-install_xcode() {
-  echo "
-  :::
-  Performing fancy xcode install and general OS updates...
-  :::
-"
-  touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-  PROD=$(softwareupdate -l) |
-    grep "\*.*Command Line" |
-    head -n 1 | awk -F"*" '{print $2}' |
-    sed -e 's/^ *//' |
-    tr -d '\n'
-  softwareupdate -i "$PROD" --verbose
-}
-
-show_ascii_logo() {
-  echo "
-  :::
-  Andrew's Script.
-  Do some badass stuff here:
-  :::
-"
-}
-
-make_repo() {
-  local directory="${1}"
-  local remoteRepo="${2}"
-
-  echo -n "::: Cloning ${remoteRepo} into ${directory}..."
-  # Clean out the directory if it exists for git to clone into
-  if [[ -d "${directory}" ]]; then
-    echo -n "::: Dir already exists - cleaning it up for you!  I am so nice :D"
-    rm -rf "${directory}"
-  fi
-  git clone -q --depth 1 "${remoteRepo}" "${directory}" &> /dev/null || return $?
-  echo " done!"
-  return 0
-}
-
-
-main() {
-
-  ######## FIRST CHECK ########
-  # Must be root to install
-  show_ascii_logo
-  echo ":::"
-  if [[ ${EUID} -eq 0 ]]; then
-    echo "::: You are root."
-  else
-    echo "::: Script called with non-root privileges. The Pi-hole installs server packages and configures"
-    echo "::: system networking, it requires elevated rights. Please check the contents of the script for"
-    echo "::: any concerns with this requirement. Please be sure to download this script from a trusted source."
-    echo ":::"
-    echo "::: Detecting the presence of the sudo utility for continuation of this install..."
-
-    if command -v sudo &> /dev/null; then
-      echo "::: Utility sudo located."
-      exec curl -sSL https://raw.githubusercontent.com/lordmuffin/devops-setup/master/autoinstall/basic-install.sh | sudo bash "$@"
-      exit $?
-    else
-      echo "::: sudo is needed for the Web interface to run pihole commands.  Please run this script as root and it will be automatically installed."
-      exit 1
-    fi
-  fi
-
-    # Clone/Update the repos
-    #Elevate Perms
-    #!/bin/bash
-    # Run me with superuser privileges
-    echo 'vagrant  ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers
-    easy_install pip
-    pip install ansible>=2.0.2
-    install_xcode | tee ${tmpLog}
-    make_repo ~/Git/devops-setup https://github.com/lordmuffin/devops-setup.git
-    make_repo ~/Git/dotfiles https://github.com/lordmuffin/dotfiles.git
-    cd ~/Git/devops-setup
-    ansible-playbook main.yml -i inventory -K | tee ${tmpLog}
-
-
-  echo "::: done."
-}
-main
+# Run this from the same directory as this README file.
+fancy_echo "Running ansible playbook ..."
+ansible-playbook playbook.yml -i hosts --ask-sudo-pass -vvvv
