@@ -18,6 +18,20 @@ dotfiles_files:
 
 applications:
   # - ansible # Installed via Pip.
+
+
+
+
+
+brew_taps:
+  - homebrew/core
+  - caskroom/versions # for sublime-text3
+  - homebrew/binary
+  - homebrew/dupes # gnu grep
+  - homebrew/versions
+homebrew_cask_appdir: /Applications
+brew_utils:
+  # - fing # Download link keeps getting changed, d'oh!
   - autoconf
   - bash-completion
   - chromedriver
@@ -29,29 +43,9 @@ applications:
   - gpg
   - hub
   - httpie
-  - iperf
-  - libevent
-  - sqlite
-  - mcrypt
-  - nmap
-  - node
-  - nvm
-  - ssh-copy-id
-  - cowsay
-  - readline
-  - openssl
-  - pv
 
-brew_taps:
-  - homebrew/core
-  - caskroom/versions # for sublime-text3
-  - homebrew/binary
-  - homebrew/dupes # gnu grep
-  - homebrew/versions
-homebrew_cask_appdir: /Applications
-brew_utils:
-  # - fing # Download link keeps getting changed, d'oh!
   - 1password
+  - atom
   - docker
   - dropbox
   - firefox
@@ -59,15 +53,26 @@ brew_utils:
   - handbrake
   - licecap
   - limechat
+  - iperf
+  - libevent
+  - sqlite
   - macvim
+  - mcrypt
+  - nmap
+  - node
+
   - nvalt
+  - nvm
+  - openssl
   - sequel-pro
   - skitch
-  - atom
+
+  - ssh-copy-id
   - transmit
   - vagrant
   - virtualbox
   - packer
+  - pv
   - iterm2
   - wget
 
