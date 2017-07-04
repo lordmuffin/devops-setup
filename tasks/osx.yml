@@ -135,9 +135,19 @@
 
 - name: Generate dotfiles with rcup
   shell: env RCRC=~/dotfiles/rcrc rcup -B 0 -f
-- name: Make zsh the default shell
-  shell: dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
-  become: true
+  
+- name: Add zsh to list of allowed shells
+  lineinfile: dest=/etc/shells line=/usr/local/bin/zsh state=present owner=root group=wheel mode=0644
+  become: yes
+
+- name: Register currently configured login shell (https://github.com/hnakamur/ansible-role-osx-login-shell/blob/master/tasks/main.yml)
+  shell: dscl . read ~ UserShell | awk '{print $2}'
+  register: osx_login_shell_current_login_shell
+  changed_when: false
+
+- name: Set zsh as login shell
+  command: chsh -s /usr/local/bin/zsh
+  when: osx_login_shell_current_login_shell.stdout != "/usr/local/bin/zsh"
 
 ## POST INSTALL STEPS / Cask gotchas
 #
