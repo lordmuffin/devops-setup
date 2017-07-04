@@ -21,8 +21,9 @@ applications:
   - autoconf
   - bash-completion
   - chromedriver
-  - docker 
+  - docker
   - doxygen
+  - dropbox
   - gettext
   - gifsicle
   - git
@@ -52,7 +53,6 @@ brew_taps:
 
 homebrew_cask_appdir: /Applications
 brew_utils:
-  - dropbox
   # - fing # Download link keeps getting changed, d'oh!
   - firefox
   - google-chrome
