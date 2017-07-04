@@ -24,23 +24,26 @@
 
 - name: Install libraries/utils with homebrew
   homebrew: name={{ item }} state=present
-  with_items: "{{brew_utils}}"
+  with_items: "{{applications}}"
 
 - name: Cleanup after brewing
   shell: brew cleanup
 
     ### APPZ
-
-- name: Check for installed apps(casks)
-  shell: brew cask list | grep {{ item }}
-  register: installed_applications
+- name: Install libraries/utils with homebrew
+  homebrew_cask: name={{ item }} state=present
   with_items: "{{applications}}"
-  ignore_errors: true
 
-- name: Install Apps with brew-cask
-  shell: brew cask install {{ item }}
-  with_items: "{{applications}}"
-  when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
+# - name: Check for installed apps(casks)
+#   shell: brew cask list | grep {{ item }}
+#   register: installed_applications
+#   with_items: "{{applications}}"
+#   ignore_errors: true
+#
+# - name: Install Apps with brew-cask
+#   shell: brew cask install {{ item }}
+#   with_items: "{{applications}}"
+#   when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
 
 # Caveats: megasync only works if called from /Applications
 - name: Linking MEGASync with brew-cask
