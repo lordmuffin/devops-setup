@@ -121,15 +121,15 @@
         state=link
         force=yes
 
-- name: Assures ~/src/{{ dotfile_repo_username }} dir exists
-  file: path=~/src/{{ dotfile_repo_username }} state=directory
+- name: Assures ~/src/{{ dotfiles_repo_username }} dir exists
+  file: path=~/src/{{ dotfiles_repo_username }} state=directory
 
-- name: Install {{ dotfile_repo_username }}/dotfiles
-  git: repo=https://github.com/{{ dotfile_repo_username }}/dotfiles.git dest=~/src/{{ dotfile_repo_username }}/dotfiles
+- name: Install {{ dotfiles_repo_username }}/dotfiles
+  git: repo=https://github.com/{{ dotfiles_repo_username }}/dotfiles.git dest=~/src/{{ dotfiles_repo_username }}/dotfiles
 
-- name: Link ~/dotfiles-local to ~/src/{{ dotfile_repo_username }}/dotfiles
+- name: Link ~/dotfiles-local to ~/src/{{ dotfiles_repo_username }}/dotfiles
   file: dest=~/dotfiles-local
-        src=~/src/{{ dotfile_repo_username }}/dotfiles
+        src=~/src/{{ dotfiles_repo_username }}/dotfiles
         state=link
         force=yes
 
