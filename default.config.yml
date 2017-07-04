@@ -74,6 +74,7 @@ brew_utils:
   - pv
   - iterm2
   - wget
+  - zsh
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
