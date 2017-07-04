@@ -18,7 +18,6 @@ dotfiles_files:
 
 applications:
   # - ansible # Installed via Pip.
-  - 1password
   - autoconf
   - bash-completion
   - chromedriver
@@ -53,6 +52,7 @@ brew_taps:
 homebrew_cask_appdir: /Applications
 brew_utils:
   # - fing # Download link keeps getting changed, d'oh!
+  - 1password
   - docker
   - dropbox
   - firefox
