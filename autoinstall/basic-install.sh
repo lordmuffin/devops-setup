@@ -60,10 +60,10 @@ if [ -d "./laptop" ]; then
 fi
 fancy_echo "Cloning laptop repo ..."
 
-if [ -d "/users/vagrant/Git/dotfiles"]; then
+if [ -d "/Users/vagrant/Git/dotfiles"]; then
 git clone https://github.com/lordmuffin/devops-setup.git ~/Git/devops-setup
 git clone https://github.com/lordmuffin/dotfiles.git ~/Git/dotfiles
-fi 
+fi
 fancy_echo "Changing to laptop repo dir ..."
 cd ~/Git/devops-setup
 
