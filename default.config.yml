@@ -48,9 +48,10 @@ applications:
 
 brew_taps:
   - homebrew/core
-  - caskroom/cask
-  - homebrew/php
-
+  - caskroom/versions # for sublime-text3
+  - homebrew/binary
+  - homebrew/dupes # gnu grep
+  - homebrew/versions 
 homebrew_cask_appdir: /Applications
 brew_utils:
   # - fing # Download link keeps getting changed, d'oh!
