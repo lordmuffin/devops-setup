@@ -41,7 +41,6 @@ applications:
   - readline
   - openssl
   - pv
-  - vagrant
 
 brew_taps:
   - homebrew/core
