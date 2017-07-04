@@ -54,8 +54,8 @@
 
 ### ZSH radness
 
-- shell: 'which zsh'
-  register: zsh_path
+- name: Set zsh shell
+  shell: 'chsh -s $(which zsh)'
 
 # - name: Get current Terminal profile.
 #   shell: defaults read com.apple.Terminal 'Default Window Settings'
