@@ -137,6 +137,7 @@
   shell: env RCRC=~/dotfiles/rcrc rcup -B 0 -f
 - name: Make zsh the default shell
   shell: dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
+  become: true
 
 ## POST INSTALL STEPS / Cask gotchas
 #
