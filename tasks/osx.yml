@@ -5,7 +5,9 @@
     state: touch
     path: "{{ osx_script }}"
     mode: "a+x"
+- name: script set perms.
+  shell: "chmod +x /Users/vagrant/Git/dotfiles/.osx"
+  changed_when: false
 - name: Run .osx dotfiles.
   shell: "{{ osx_script }}"
   changed_when: false
-  become: true
