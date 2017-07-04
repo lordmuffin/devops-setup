@@ -54,16 +54,12 @@ else
 fi
 
 # Clone the repository to your local drive.
-if [ -d "./laptop" ]; then
+if [ -d "./Git" ]; then
   fancy_echo "Laptop repo dir exists. Removing ..."
-  rm -rf ./laptop/
+  rm -rf ./Git/
 fi
-fancy_echo "Cloning laptop repo ..."
-if [ -d "~/Git/dotfiles" ]; then
-  rm -rf ~/Git/dotfiles
-else
-  git clone https://github.com/lordmuffin/devops-setup.git ~/Git/devops-setup
-  git clone https://github.com/lordmuffin/dotfiles.git ~/Git/dotfiles
+git clone https://github.com/lordmuffin/devops-setup.git ~/Git/devops-setup
+git clone https://github.com/lordmuffin/dotfiles.git ~/Git/dotfiles
 fancy_echo "Changing to laptop repo dir ..."
 cd ~/Git/devops-setup
 
