@@ -136,7 +136,7 @@
 - name: Generate dotfiles with rcup
   shell: env RCRC=~/dotfiles/rcrc rcup -B 0 -f
 - name: Make zsh the default shell
-  shell: chsh -s $(which zsh)
+  shell: dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 
 ## POST INSTALL STEPS / Cask gotchas
 #
