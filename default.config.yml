@@ -21,9 +21,7 @@ applications:
   - autoconf
   - bash-completion
   - chromedriver
-  - docker
   - doxygen
-  - dropbox
   - gettext
   - gifsicle
   - git
@@ -51,10 +49,12 @@ brew_taps:
   - caskroom/versions # for sublime-text3
   - homebrew/binary
   - homebrew/dupes # gnu grep
-  - homebrew/versions 
+  - homebrew/versions
 homebrew_cask_appdir: /Applications
 brew_utils:
   # - fing # Download link keeps getting changed, d'oh!
+  - docker
+  - dropbox
   - firefox
   - google-chrome
   - handbrake
