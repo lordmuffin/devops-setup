@@ -22,13 +22,14 @@
 
     ### UTILS
 
+- name: Install libraries/utils with homebrew
+  homebrew: name={{ item }} state=present
+  with_items: "{{applications}}"
+
 - name: Cleanup after brewing
   shell: brew cleanup
 
     ### APPZ
-- name: Install libraries/utils with homebrew
-  homebrew_cask: name={{ item }} state=present
-  with_items: "{{applications}}"
 
 # - name: Check for installed apps(casks)
 #   shell: brew cask list | grep {{ item }}
