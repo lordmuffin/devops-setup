@@ -134,8 +134,8 @@
         force=yes
 
 - name: Generate dotfiles with rcup
-  shell: env RCRC=~/dotfiles/rcrc rcup -B 0 -f
-  
+  raw: env RCRC=~/dotfiles/rcrc rcup -B 0 -f
+
 - name: Add zsh to list of allowed shells
   lineinfile: dest=/etc/shells line=/usr/local/bin/zsh state=present owner=root group=wheel mode=0644
   become: yes
