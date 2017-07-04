@@ -75,7 +75,7 @@ mas_installed_apps: []
 mas_email: ""
 mas_password: ""
 
-osx_script: "/Users/vagrant/Git/dotfiles/.osx --no-restart"
+osx_script: "/Users/vagrant/Git/dotfiles/.osx"
 
 # Install packages from other package managers.
 # Note: You are responsible for making sure the required package managers are
