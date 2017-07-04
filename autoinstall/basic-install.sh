@@ -59,8 +59,8 @@ if [ -d "./laptop" ]; then
   rm -rf ./laptop/
 fi
 fancy_echo "Cloning laptop repo ..."
-git clone ~/Git/devops-setup https://github.com/lordmuffin/devops-setup.git
-git clone ~/Git/dotfiles https://github.com/lordmuffin/dotfiles.git
+git clone https://github.com/lordmuffin/devops-setup.git ~/Git/devops-setup 
+git clone https://github.com/lordmuffin/dotfiles.git ~/Git/dotfiles
 
 fancy_echo "Changing to laptop repo dir ..."
 cd ~/Git/devops-setup
