@@ -42,7 +42,6 @@ applications:
   - openssl
   - pv
   - wget
-  - wrk
 
 brew_taps:
   - homebrew/core
