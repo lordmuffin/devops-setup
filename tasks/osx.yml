@@ -134,11 +134,9 @@
         force=yes
 
 - name: Generate dotfiles with rcup
-  shell: env RCRC=~/dotfiles/rcrc rcup
-
-- name: Configure zprezto
-  script: ~/dotfiles-local/zprezto-local/init.zsh
-  sudo: true
+  shell: env RCRC=~/dotfiles/rcrc rcup -B 0 -f
+- name: Make zsh the default shell
+  shell: chsh -s $(which zsh)
 
 ## POST INSTALL STEPS / Cask gotchas
 #
