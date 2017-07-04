@@ -53,20 +53,12 @@
 
 
 ### ZSH radness
-- name: Determine if zsh is default/current shell
-  shell: echo $SHELL
-  register: current_shell
 
-- name: Enable zsh in /etc/shells
-  shell: sudo /bin/sh -c 'grep -q "{{ zsh_path }}" /etc/shells || echo "{{ zsh_path }}" >> /etc/shells'
-  when: current_shell.stdout != '/usr/local/bin/zsh'
-  #" unbreak my syntax highlighting...
+- shell: 'which zsh'
+  register: zsh_path
 
-- name: Set zsh as default shell
-  shell: chsh -s {{ zsh_path }}
-  when: current_shell.stdout != '/usr/local/bin/zsh'
-  sudo: true
-
+- name: change shell to zsh
+  user: name={{ user }} shell={{ zsh_path.stdout }}
 - name: Use GNU tools instead of osx counterparts (grep find etc)
   shell: echo 'export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH' >> ~/.zshrc
 
