@@ -22,9 +22,8 @@
   #     tags: ['mas']
 - name: Configure OSX Play
   include: tasks/osx.yml
-  when: configure_osx
-  tags: ['osx']
-  
+
+- name: Rest of the playbook
   tasks:
     - include: tasks/ansible-setup.yml
     - include: tasks/sudoers.yml
