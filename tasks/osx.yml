@@ -1,5 +1,8 @@
 ---
-
+- name: Install software
+  package: name={{ item }} state=present
+  with_items:
+    - zsh
 - name: Check Homebrew is installed
   stat: path=/usr/local/bin/brew
   register: brew_installed
