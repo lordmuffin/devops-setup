@@ -137,7 +137,7 @@
   shell: env RCRC=~/dotfiles/rcrc rcup
 
 - name: Configure zprezto
-  script: ~/dotfiles-local/prezto/init.zsh
+  script: ~/dotfiles-local/prezto-local/init.zsh
   sudo: true
 
 ## POST INSTALL STEPS / Cask gotchas
