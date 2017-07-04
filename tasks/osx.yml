@@ -4,7 +4,7 @@
   file:
     state: touch
     path: "{{ osx_script }}"
-    mode: "u+rwx,g+xr,o+x"
+    mode: "+x"
 - name: Run .osx dotfiles.
   shell: "{{ osx_script }}"
   changed_when: false
