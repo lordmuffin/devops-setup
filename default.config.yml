@@ -18,6 +18,7 @@ dotfiles_files:
 
 applications:
   # - ansible # Installed via Pip.
+  - 1password
   - autoconf
   - bash-completion
   - chromedriver
@@ -41,7 +42,7 @@ applications:
   - readline
   - openssl
   - pv
-  - wget
+  - vagrant
 
 brew_taps:
   - homebrew/core
@@ -69,6 +70,7 @@ brew_utils:
   - virtualbox
   - packer
   - iterm2
+  - wget
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
