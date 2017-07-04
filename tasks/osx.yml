@@ -22,10 +22,6 @@
 
     ### UTILS
 
-- name: Install libraries/utils with homebrew
-  homebrew: name={{ item }} state=present
-  with_items: "{{applications}}"
-
 - name: Cleanup after brewing
   shell: brew cleanup
 
