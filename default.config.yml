@@ -16,7 +16,7 @@ dotfiles_files:
   - .osx
   - .vimrc
 
-homebrew_installed_packages:
+applications:
   # - ansible # Installed via Pip.
   - autoconf
   - bash-completion
@@ -44,13 +44,13 @@ homebrew_installed_packages:
   - wget
   - wrk
 
-homebrew_taps:
+brew_taps:
   - homebrew/core
   - caskroom/cask
   - homebrew/php
 
 homebrew_cask_appdir: /Applications
-homebrew_cask_apps:
+brew_utils:
   - docker
   - dropbox
   # - fing # Download link keeps getting changed, d'oh!
