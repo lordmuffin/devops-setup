@@ -1,5 +1,6 @@
 ---
 downloads: ~/.ansible-downloads/
+user: vagrant
 
 configure_dotfiles: yes
 configure_sudoers: yes
