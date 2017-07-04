@@ -18,7 +18,7 @@ dotfiles_files:
 
 applications:
   # - ansible # Installed via Pip.
-  - autoconf
+  - name
 
 
 
@@ -32,7 +32,7 @@ brew_taps:
 homebrew_cask_appdir: /Applications
 brew_utils:
   # - fing # Download link keeps getting changed, d'oh!
-
+  - autoconf
   - bash-completion
   - chromedriver
   - doxygen
