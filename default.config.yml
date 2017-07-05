@@ -54,14 +54,13 @@ brew_utils:
   - mcrypt
   - nmap
   - node
-
   - nvalt
   - nvm
   - openssl
   - sequel-pro
   - skitch
-
   - ssh-copy-id
+  - thefuck
   - transmit
   - vagrant
   - virtualbox

@@ -143,9 +143,15 @@
     mode: u=rwX,g=rX,o=rX
 # This says yes to all the script responses.
 - name: Run rcup dotfiles setup
-  shell: yes '' | sh ~/dotfiles/rcup.sh
+  shell: |
+
+    spawn sh ~/dotfiles/rcup.sh
+
+    expect "\r\n"
+    send "Y\n"
+
   args:
-    executable: /bin/zsh
+    executable: /usr/bin/expect
 
 - name: Add zsh to list of allowed shells
   lineinfile: dest=/etc/shells line=/usr/local/bin/zsh state=present owner=root group=wheel mode=0644
