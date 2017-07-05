@@ -63,13 +63,14 @@ git clone https://github.com/lordmuffin/dotfiles.git ~/Git/dotfiles
 fancy_echo "Changing to laptop repo dir ..."
 cd ~/Git/devops-setup
 
-# Run this from the same directory as this README file.
-fancy_echo "Running ansible galaxy ..."
-ansible-galaxy install -r requirements.yml
-fancy_echo "Running ansible playbook ..."
-ansible-playbook playbook.yml -i inventory --ask-sudo-pass -vs
+# # Run this from the same directory as this README file.
+# fancy_echo "Running ansible galaxy ..."
+# ansible-galaxy install -r requirements.yml
+# fancy_echo "Running ansible playbook ..."
+# ansible-playbook playbook.yml -i inventory --ask-sudo-pass -v
 
 # Debug Command
-# fancy_echo "Running ansible debug playbook ..."
-# ansible-galaxy install -r requirements.yml
-# ansible-playbook playbook.yml -i inventory --ask-sudo-pass -vvvv
+fancy_echo "DEBUG ::: Running ansible galaxy ..."
+ansible-galaxy install -r requirements.yml -vvvv
+fancy_echo "DEBUG ::: Running ansible playbook ..."
+ansible-playbook playbook.yml -i inventory --ask-sudo-pass -vvvv
