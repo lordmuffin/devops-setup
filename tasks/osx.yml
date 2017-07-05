@@ -137,10 +137,8 @@
   raw: env RCRC=~/dotfiles/rcrc rcup -B 0 -f -g > ~/dotfiles/rcup.sh
 
 - name: Run rcup dotfiles setup
-  expect:
-    command: /bin/zsh -i -c ~/dotfiles/rcup.sh
-    responses:
-      'y/N': 'y'
+  shell: yes '' | /bin/zsh -i -c ~/dotfiles/rcup.sh
+
 - name: Assures rcup.sh is executable
   file: path=~/dotfiles/rcup.sh state=touch mode=+x
 
