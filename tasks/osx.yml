@@ -134,7 +134,7 @@
         force=yes
 
 - name: Generate dotfiles with rcup
-  shell: rcup -B 0 -f -g -d ~/dotfiles > ~/dotfiles/rcup.sh
+  shell: rcup -B 0 -f -g -d ~/dotfiles -K > ~/dotfiles/rcup.sh
 
 - name: Assures rcup.sh is executable
   file: path=~/dotfiles/rcup.sh state=touch mode=+x
