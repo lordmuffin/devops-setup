@@ -92,12 +92,10 @@ npm_packages: []
   # - name: webpack
   #   state: present # present/absent/latest, default: present
   #   version: "^2.6" # default: N/A
-pip_packages: [
+pip_packages:
   - name: pexpect
     state: present # present/absent/latest, default: present
     #version: "4.2.1" # default: N/A
-]
-
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []
