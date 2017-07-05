@@ -144,5 +144,5 @@
 #
 
 - name: Run Monolingual
-  shell: open ~/Applications/Monolingual.app
+  shell: open /Applications/Monolingual.app
   when: "'monolingual' in applications"
