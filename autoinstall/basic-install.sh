@@ -64,9 +64,10 @@ fancy_echo "Changing to laptop repo dir ..."
 cd ~/Git/devops-setup
 
 # Run this from the same directory as this README file.
-# fancy_echo "Running ansible playbook ..."
-# ansible-playbook playbook.yml -i inventory --ask-sudo-pass
+
+fancy_echo "Running ansible playbook ..."
+ansible-playbook playbook.yml -i inventory --ask-sudo-pass
 
 # Debug Command
-fancy_echo "Running ansible debug playbook ..."
-ansible-playbook playbook.yml -i inventory --ask-sudo-pass -vvvv
+# fancy_echo "Running ansible debug playbook ..."
+# ansible-playbook playbook.yml -i inventory --ask-sudo-pass -vvvv
