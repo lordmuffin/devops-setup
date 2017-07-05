@@ -13,9 +13,6 @@
   roles:
     - role: geerlingguy.homebrew
       tags: ['homebrew']
-  # roles:
-  #   - role: geerlingguy.homebrew
-  #     tags: ['homebrew']
   #   - role: geerlingguy.dotfiles
   #     when: configure_dotfiles
   #     tags: ['dotfiles']
@@ -28,9 +25,7 @@
     - include: tasks/sudoers.yml
       when: configure_sudoers
 
-    # - include: tasks/homebrew.yml
-    # - include: tasks/terminal.yml
-    #   when: configure_terminal
+    - include: tasks/terminal.yml
 
     - include: tasks/extra-packages.yml
       tags: ['extra-packages']

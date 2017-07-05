@@ -59,7 +59,6 @@ if [ -d "./Git" ]; then
   rm -rf ./Git/
 fi
 git clone https://github.com/lordmuffin/devops-setup.git ~/Git/devops-setup
-git clone https://github.com/lordmuffin/dotfiles.git ~/Git/dotfiles
 fancy_echo "Changing to laptop repo dir ..."
 cd ~/Git/devops-setup
 
