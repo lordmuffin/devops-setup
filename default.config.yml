@@ -20,7 +20,7 @@ dotfiles_files:
 
 applications:
   # - ansible # Installed via Pip.
-  - name
+  - pexpect
 
 
 
