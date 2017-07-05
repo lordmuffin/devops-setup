@@ -26,7 +26,7 @@
     - include: tasks/sudoers.yml
       when: configure_sudoers
 
-    # - include: tasks/homebrew.yml
+    - include: tasks/homebrew.yml
     # - include: tasks/terminal.yml
     #   when: configure_terminal
 
