@@ -66,7 +66,7 @@ cd ~/Git/devops-setup
 # Run this from the same directory as this README file.
 
 fancy_echo "Running ansible playbook ..."
-ansible-playbook playbook.yml -i inventory --ask-sudo-pass -vvv
+ansible-playbook playbook.yml -i inventory --ask-sudo-pass -vv
 
 # Debug Command
 # fancy_echo "Running ansible debug playbook ..."
