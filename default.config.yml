@@ -1,6 +1,7 @@
 ---
 downloads: ~/.ansible-downloads/
 user: vagrant
+gitfolder: "/Users/{{ user }}/Git"
 
 configure_dotfiles: yes
 configure_sudoers: yes
@@ -10,7 +11,7 @@ configure_osx: yes
 dotfiles_repo: https://github.com/lordmuffin/dotfiles.git
 dotfiles_repo_username: lordmuffin
 dotfiles_repo_accept_hostkey: yes
-dotfiles_repo_local_destination: /Users/vagrant/Git/dotfiles
+dotfiles_repo_local_destination: "{{ gitfolder }}/dotfiles"
 dotfiles_files:
   - .bash_profile
   - .gitignore
@@ -18,23 +19,9 @@ dotfiles_files:
   - .osx
   - .vimrc
 
-applications:
-  - monolingual
-brew_taps:
-  - homebrew/core
-  - caskroom/versions # for sublime-text3
-  - homebrew/binary
-  - homebrew/dupes # gnu grep
-  - homebrew/versions
-brew_cask_apps:
-  - monolingual
-  - 1password
-  - atom
-  - iterm2
-  - vagrant
-  - virtualbox
-homebrew_cask_appdir: /Applications
-homebrew_install_apps:
+homebrew_repo: https://github.com/Homebrew/brew
+
+homebrew_installed_packages:
   - autoconf
   - bash-completion
   - chromedriver
@@ -46,31 +33,55 @@ homebrew_install_apps:
   - gpg
   - hub
   - httpie
-  - docker
-  - dropbox
-  - firefox
-  - google-chrome
-  - handbrake
-  - licecap
-  - limechat
   - iperf
   - libevent
   - sqlite
-  - macvim
   - mcrypt
   - nmap
   - node
-  - nvalt
   - nvm
   - openssl
-  - sequel-pro
-  - skitch
   - ssh-copy-id
   - thefuck
   - transmit
   - packer
   - pv
   - wget
+homebrew_upgrade_all_packages: yes
+homebrew_taps:
+  - homebrew/core
+  - caskroom/versions # for sublime-text3
+  - homebrew/binary
+  - homebrew/dupes # gnu grep
+  - homebrew/versions
+homebrewbrew_cask_apps:
+  - monolingual
+  - 1password
+  - atom
+  - iterm2
+  - vagrant
+  - virtualbox
+  - docker
+  - dropbox
+  # - fing # Download link keeps getting changed, d'oh!
+  - firefox
+  - google-chrome
+  - handbrake
+  - licecap
+  - limechat
+  - macvim
+  - nvalt
+  - sequel-pro
+  - skitch
+  - slack
+  - transmit
+  - vagrant
+  - virtualbox
+homebrew_cask_appdir: /Applications
+
+applications:
+  - monolingual
+
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
