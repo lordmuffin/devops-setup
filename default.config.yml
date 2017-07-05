@@ -35,7 +35,6 @@ brew_cask_apps:
   - virtualbox
 homebrew_cask_appdir: /Applications
 homebrew_install_apps:
-  # - fing # Download link keeps getting changed, d'oh!
   - autoconf
   - bash-completion
   - chromedriver
