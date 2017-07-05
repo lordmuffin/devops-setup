@@ -18,6 +18,8 @@ dotfiles_files:
   - .osx
   - .vimrc
 
+applications:
+  - monolingual
 brew_taps:
   - homebrew/core
   - caskroom/versions # for sublime-text3
