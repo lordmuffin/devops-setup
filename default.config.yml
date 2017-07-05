@@ -18,12 +18,9 @@ dotfiles_files:
   - .osx
   - .vimrc
 
-applications:
-  # - ansible # Installed via Pip.
+pip_packages:
+  # Installed via Pip.
   - pexpect
-
-
-
 
 brew_taps:
   - homebrew/core
