@@ -14,7 +14,7 @@
 #   when: brew_installed.stat.exists == false
 
 - homebrew:
-    name: {{item}}
+    name: "{{item}}"
     state: present
     # install_options: with-baz,enable-debug
     update_homebrew: yes
@@ -23,13 +23,13 @@
       - "{{homebrew_install_apps}}"
 
 - homebrew_cask:
-    name: {{item}}
+    name: "{{item}}"
     state: present
     with_items:
       - "{{homebrew_cask_apps}}"
 
 - homebrew_tap:
-    name: {{item}}
+    name: "{{item}}"
     state: present
     with_items:
       - "{{homebrew_taps}}"
