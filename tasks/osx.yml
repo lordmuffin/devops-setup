@@ -141,6 +141,9 @@
     command: /bin/zsh -i -c ~/dotfiles/rcup.sh
     responses:
       'y/N': 'y'
+- name: Assures rcup.sh is executable
+  file: path=~/dotfiles/rcup.sh state=touch mode=+x
+
 - name: Add zsh to list of allowed shells
   lineinfile: dest=/etc/shells line=/usr/local/bin/zsh state=present owner=root group=wheel mode=0644
   become: yes
