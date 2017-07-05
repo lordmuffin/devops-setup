@@ -28,6 +28,11 @@ brew_taps:
   - homebrew/versions
 brew_cask_apps:
   - monolingual
+  - 1password
+  - atom
+  - iterm2
+  - vagrant
+  - virtualbox
 homebrew_cask_appdir: /Applications
 brew_utils:
   # - fing # Download link keeps getting changed, d'oh!
@@ -42,8 +47,6 @@ brew_utils:
   - gpg
   - hub
   - httpie
-  - 1password
-  - atom
   - docker
   - dropbox
   - firefox
@@ -66,11 +69,8 @@ brew_utils:
   - ssh-copy-id
   - thefuck
   - transmit
-  - vagrant
-  - virtualbox
   - packer
   - pv
-  - iterm2
   - wget
 
 # See `geerlingguy.mas` role documentation for usage instructions.
