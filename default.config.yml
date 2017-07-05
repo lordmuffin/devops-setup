@@ -26,6 +26,8 @@ brew_taps:
   - homebrew/binary
   - homebrew/dupes # gnu grep
   - homebrew/versions
+brew_cask_apps:
+  - monolingual
 homebrew_cask_appdir: /Applications
 brew_utils:
   # - fing # Download link keeps getting changed, d'oh!
@@ -54,7 +56,6 @@ brew_utils:
   - sqlite
   - macvim
   - mcrypt
-  - monolingual
   - nmap
   - node
   - nvalt
