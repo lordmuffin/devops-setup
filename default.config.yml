@@ -54,6 +54,7 @@ brew_utils:
   - sqlite
   - macvim
   - mcrypt
+  - monolingual
   - nmap
   - node
   - nvalt
