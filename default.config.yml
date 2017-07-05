@@ -34,7 +34,7 @@ brew_cask_apps:
   - vagrant
   - virtualbox
 homebrew_cask_appdir: /Applications
-brew_utils:
+homebrew_install_apps:
   # - fing # Download link keeps getting changed, d'oh!
   - autoconf
   - bash-completion
