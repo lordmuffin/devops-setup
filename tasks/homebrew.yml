@@ -19,17 +19,20 @@
     # install_options: with-baz,enable-debug
     update_homebrew: yes
     update_all: yes
-    with_items: {{homebrew_install_apps}}
+    with_items:
+      - "{{homebrew_install_apps}}"
 
 - homebrew_cask:
     name: {{item}}
     state: present
-    with_items: {{homebrew_cask_apps}}
+    with_items:
+      - "{{homebrew_cask_apps}}"
 
 - homebrew_tap:
     name: {{item}}
     state: present
-    with_items: {{homebrew_taps}}
+    with_items:
+      - "{{homebrew_taps}}"
 
 
 
