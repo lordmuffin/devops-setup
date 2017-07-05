@@ -51,7 +51,7 @@ homebrew_taps:
   - caskroom/cask
   - homebrew/core
   - homebrew/php
-homebrewbrew_cask_apps:
+homebrew_cask_apps:
   - monolingual
   - 1password
   - atom
