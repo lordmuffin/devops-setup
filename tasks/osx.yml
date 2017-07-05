@@ -137,7 +137,8 @@
   shell: rcup -B 0 -f -g -d ~/dotfiles -K > ~/dotfiles/rcup.sh
 
 - name: Assures rcup.sh is executable
-  file: path=~/dotfiles/rcup.sh state=touch mode=+x
+  file: path=~/dotfiles/rcup.sh state=touch
+  mode: u=rwX,g=rX,o=rX
 # This says yes to all the script responses.
 - name: Run rcup dotfiles setup
   shell: yes '' | /bin/zsh -i -c ~/dotfiles/rcup.sh
