@@ -42,7 +42,8 @@ if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew..."
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null
 else
-  fancy_echo "Homebrew already installed. Skipping."
+  fancy_echo "Updating Homebrew..."
+  brew update
 fi
 
 # [Install Ansible](http://docs.ansible.com/intro_installation.html).
@@ -50,7 +51,8 @@ if ! command -v ansible >/dev/null; then
   fancy_echo "Installing Ansible ..."
   brew install ansible
 else
-  fancy_echo "Ansible already installed. Skipping."
+  fancy_echo "Updating Ansible..."
+  brew update ansible
 fi
 
 # Clone the repository to your local drive.
@@ -70,7 +72,7 @@ git clone https://github.com/skwp/dotfiles.git ~/.yadr
 cd ~/.yadr
 rake install
 fancy_echo "Running ansible playbook ..."
-ansible-playbook ~Git/devops-setup/playbook.yml -i ~Git/devops-setup/inventory --ask-sudo-pass -v
+ansible-playbook ~/Git/devops-setup/playbook.yml -i ~/Git/devops-setup/inventory --ask-sudo-pass -v
 
 # Debug Command
 # fancy_echo "DEBUG ::: Running ansible galaxy ..."
