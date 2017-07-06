@@ -55,11 +55,17 @@ else
   brew upgrade
 fi
 
-# Clone the repository to your local drive.
-if [ -d "./Git" ]; then
-  fancy_echo "Laptop repo dir exists. Removing ..."
-  rm -rf ./Git/
+if [ -d "~/.yadr" ]; then
+  fancy_echo "YADR repo dir exists. Removing ..."
+  rm -rf ~/.yadr
 fi
+fancy_echo "YADR rake install..."
+git clone https://github.com/skwp/dotfiles.git ~/.yadr
+cd ~/.yadr
+rake install
+
+# Clone the repository to your local drive.
+
 git clone https://github.com/lordmuffin/devops-setup.git ~/Git/devops-setup
 fancy_echo "Changing to laptop repo dir ..."
 cd ~/Git/devops-setup
@@ -67,10 +73,7 @@ cd ~/Git/devops-setup
 # # Run this from the same directory as this README file.
 fancy_echo "Running ansible galaxy ..."
 ansible-galaxy install -r requirements.yml
-fancy_echo "Running rake install..."
-git clone https://github.com/skwp/dotfiles.git ~/.yadr
-cd ~/.yadr
-rake install
+
 fancy_echo "Running ansible playbook ..."
 ansible-playbook ~/Git/devops-setup/playbook.yml -i ~/Git/devops-setup/inventory --ask-sudo-pass -v
 
