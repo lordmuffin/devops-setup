@@ -3,9 +3,6 @@
 - stat:
     path: /Users/{{ user }}/.yadr
   register: yadr
-- fail:
-    msg: "Whoops! file ownership has changed"
-  when: st.stat.pw_name != 'root'
 # Example just get information about the repository whether or not it has
 # already been cloned locally.
 - name: Update yadr if it doesnt exist.
