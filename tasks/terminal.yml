@@ -9,17 +9,9 @@
   git:
     repo: 'https://github.com/skwp/dotfiles.git'
     dest: /Users/{{ user }}/.yadr
-  when:
-- name: Download yadr
-  get_url:
-    url: https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh
-    dest: /tmp/yadr-installer.sh
-    mode: 0755
-  when: stat.yadr.isdir not defined and stat.yadr.isdir
-- name: Execute the yadr-installer.sh
-  script: /tmp/zsh-installer.sh
-  when: stat.yadr.isdir not defined and stat.yadr.isdir
 
+- name: Download yadr
+  command: rake install
 #
 # - name: Git Prezto repo
 #   git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto
