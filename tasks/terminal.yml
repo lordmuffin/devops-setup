@@ -10,11 +10,11 @@
     repo: 'https://github.com/skwp/dotfiles.git'
     dest: /Users/{{ user }}/.yadr
 
-- name: Download yadr
-  shell: rake install
-  args:
-    chdir: /Users/{{ user }}/.yadr
-#
+# - name: Download yadr
+#   shell: rake install
+#   args:
+#     chdir: /Users/{{ user }}/.yadr
+# #
 # - name: Git Prezto repo
 #   git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto
 #

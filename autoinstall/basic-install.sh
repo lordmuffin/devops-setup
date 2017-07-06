@@ -67,7 +67,9 @@ fancy_echo "Running ansible galaxy ..."
 ansible-galaxy install -r requirements.yml
 fancy_echo "Running ansible playbook ..."
 ansible-playbook playbook.yml -i inventory --ask-sudo-pass -v
-
+fancy_echo "Running rake install..."
+cd ~/.yadr
+rake install
 # Debug Command
 # fancy_echo "DEBUG ::: Running ansible galaxy ..."
 # ansible-galaxy install -r requirements.yml -vvvv
