@@ -55,9 +55,9 @@ else
   brew upgrade
 fi
 
-if [ -d "~/.yadr" ]; then
+if [ -d "./.yadr" ]; then
   fancy_echo "YADR repo dir exists. Removing ..."
-  rm -rf ~/.yadr
+  rm -rf ./.yadr
 fi
 fancy_echo "YADR rake install..."
 git clone https://github.com/skwp/dotfiles.git ~/.yadr
@@ -65,7 +65,10 @@ cd ~/.yadr
 rake install
 
 # Clone the repository to your local drive.
-
+if [ -d "./Git" ]; then
+  fancy_echo "Laptop repo dir exists. Removing ..."
+  rm -rf ./Git/
+fi
 git clone https://github.com/lordmuffin/devops-setup.git ~/Git/devops-setup
 fancy_echo "Changing to laptop repo dir ..."
 cd ~/Git/devops-setup
