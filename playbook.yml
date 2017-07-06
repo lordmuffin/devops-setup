@@ -25,7 +25,7 @@
     - include: tasks/sudoers.yml
       when: configure_sudoers
 
-    - include: tasks/terminal.yml
+    # - include: tasks/terminal.yml
 
     - include: tasks/extra-packages.yml
       tags: ['extra-packages']
