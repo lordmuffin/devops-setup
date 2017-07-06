@@ -81,49 +81,8 @@
 - name: Assures ~/src dir exists
   file: path=~/src state=directory
 
-- name: Assures ~/src/thoughtbot dir exists
-  file: path=~/src/thoughtbot state=directory
-
-- name: Install thoughtbot/dotfiles
-  git: repo=https://github.com/thoughtbot/dotfiles.git dest=~/src/thoughtbot/dotfiles
-
-- name: Link ~/dotfiles to ~/src/thoughtbot/dotfiles
-  file: dest=~/dotfiles
-        src=~/src/thoughtbot/dotfiles
-        state=link
-        force=yes
-
-- name: Assures ~/src/{{ dotfiles_repo_username }} dir exists
-  file: path=~/src/{{ dotfiles_repo_username }} state=directory
-
 - name: Install {{ dotfiles_repo_username }}/dotfiles
-  git: repo=https://github.com/{{ dotfiles_repo_username }}/dotfiles.git dest=~/src/{{ dotfiles_repo_username }}/dotfiles
-
-- name: Link ~/dotfiles-local to ~/src/{{ dotfiles_repo_username }}/dotfiles
-  file: dest=~/dotfiles-local
-        src=~/src/{{ dotfiles_repo_username }}/dotfiles
-        state=link
-        force=yes
-
-- name: Generate dotfiles with rcup
-  shell: rcup -B 0 -f -g -d ~/dotfiles -K > ~/dotfiles/rcup.sh
-
-- name: Assures rcup.sh is executable
-  file:
-    path: ~/dotfiles/rcup.sh
-    state: touch
-    mode: u=rwX,g=rX,o=rX
-# This says yes to all the script responses.
-- name: Run rcup dotfiles setup
-  shell: |
-
-    spawn sh ~/dotfiles/rcup.sh
-
-    expect "\r\n"
-    send "Y\n"
-
-  args:
-    executable: /usr/bin/expect
+  git: repo=https://github.com/{{ dotfiles_repo_username }}/dotfiles.git dest=~/.zsh.prompts
 
 - name: Add zsh to list of allowed shells
   lineinfile: dest=/etc/shells line=/usr/local/bin/zsh state=present owner=root group=wheel mode=0644
