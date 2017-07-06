@@ -51,7 +51,7 @@ if ! command -v ansible >/dev/null; then
   fancy_echo "Installing Ansible ..."
   brew install ansible
 else
-  fancy_echo "Updating Ansible..."
+  fancy_echo "Upgrade Ansible..."
   brew upgrade ansible
 fi
 
