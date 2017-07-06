@@ -12,6 +12,8 @@
 
 - name: Download yadr
   command: rake install
+  args:
+    chdir: /Users/{{ user }}/.yadr
 #
 # - name: Git Prezto repo
 #   git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto
