@@ -11,7 +11,7 @@
     dest: /Users/{{ user }}/.yadr
 
 - name: Download yadr
-  command: rake install
+  shell: rake install
   args:
     chdir: /Users/{{ user }}/.yadr
 #
