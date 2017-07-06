@@ -1,14 +1,38 @@
 ---
 # Custom Terminal theme.
-- name: Git Prezto repo
-  git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto
+- stat:
+    path: /Users/{{ user }}/.yadr
+  register: yadr
+- fail:
+    msg: "Whoops! file ownership has changed"
+  when: st.stat.pw_name != 'root'
+# Example just get information about the repository whether or not it has
+# already been cloned locally.
+- name: Update yadr if it doesnt exist.
+  git:
+    repo: 'https://github.com/skwp/dotfiles.git'
+    dest: /{{ user }}/.yadr
+  when:
+- name: Download yadr
+  get_url:
+    url: https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh
+    dest: /tmp/yadr-installer.sh
+    mode: 0755
+  when: stat.yadr.isdir not defined and stat.yadr.isdir
+- name: Execute the yadr-installer.sh
+  script: /tmp/zsh-installer.sh
+  when: stat.yadr.isdir not defined and stat.yadr.isdir
 
-- name: Install zprezto
-  command: |
-    setopt EXTENDED_GLOB
-    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-      ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-    done
-  changed_when: false
-
-# Still need to import my prezto files. - just copy dotfiles - need font crap.
+#
+# - name: Git Prezto repo
+#   git: repo=https://github.com/sorin-ionescu/prezto.git dest=~/.zprezto
+#
+# - name: Install zprezto
+#   command: |
+#     setopt EXTENDED_GLOB
+#     for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+#       ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+#     done
+#   changed_when: false
+#
+# # Still need to import my prezto files. - just copy dotfiles - need font crap.
