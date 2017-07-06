@@ -66,24 +66,10 @@
 
 ### DOTFILES
 
-- name: Check rcm is installed
-  stat: path=/usr/local/bin/rcup
-  register: rcm_installed
-
-- name: Install rcm for dotfiles management
-  shell: brew tap thoughtbot/formulae && brew install rcm
-  when: rcm_installed.stat.exists == false
-
-- name: Check ~/src dir exists
-  stat: path=~/src/
-  register: src_dir_exists
-
-- name: Assures ~/src dir exists
-  file: path=~/src state=directory
-
 - name: Install {{ dotfiles_repo_username }}/dotfiles
-  git: repo=https://github.com/{{ dotfiles_repo_username }}/dotfiles.git dest=~/.zsh.prompts
-
+  git: repo=https://github.com/{{ dotfiles_repo_username }}/dotfiles.git dest=~/Git/{{ dotfiles_repo_username }}/dotfiles
+- name: Install dotfiles
+  command: cp -r ~/Git/dotfiles/* /.yadr/zsh/prezto-override/
 - name: Add zsh to list of allowed shells
   lineinfile: dest=/etc/shells line=/usr/local/bin/zsh state=present owner=root group=wheel mode=0644
   become: yes
