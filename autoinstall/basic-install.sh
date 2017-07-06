@@ -52,7 +52,7 @@ if ! command -v ansible >/dev/null; then
   brew install ansible
 else
   fancy_echo "Upgrade Ansible..."
-  brew upgrade ansible
+  brew upgrade
 fi
 
 # Clone the repository to your local drive.
