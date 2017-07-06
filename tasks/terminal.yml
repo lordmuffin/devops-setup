@@ -8,7 +8,7 @@
 - name: Update yadr if it doesnt exist.
   git:
     repo: 'https://github.com/skwp/dotfiles.git'
-    dest: /{{ user }}/.yadr
+    dest: /Users/{{ user }}/.yadr
   when:
 - name: Download yadr
   get_url:
