@@ -66,6 +66,7 @@ cd ~/Git/devops-setup
 fancy_echo "Running ansible galaxy ..."
 ansible-galaxy install -r requirements.yml
 fancy_echo "Running rake install..."
+git clone https://github.com/skwp/dotfiles.git ~/.yadr
 cd ~/.yadr
 rake install
 fancy_echo "Running ansible playbook ..."
