@@ -24,7 +24,6 @@ homebrew_repo: https://github.com/Homebrew/brew
 homebrew_installed_packages:
   - autoconf
   - bash-completion
-  - chromedriver
   - doxygen
   - gettext
   - gifsicle
