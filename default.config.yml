@@ -1,6 +1,6 @@
 ---
 downloads: ~/.ansible-downloads/
-user: vagrant
+user: ajackson
 gitfolder: "/Users/{{ user }}/Git"
 
 configure_dotfiles: yes
