@@ -23,49 +23,89 @@ homebrew_repo: https://github.com/Homebrew/brew
 
 homebrew_installed_packages:
   - autoconf
+  - aws-elasticbeanstalk
+  - awscli
   - bash-completion
+  - cscope
+  - ctags
   - doxygen
   - gettext
+  - ghi
   - gifsicle
   - git
+  - gmp
+  - gnu-tar
+  - gnupg
+  - gnutls
   - go
   - gpg
   - hub
   - httpie
+  - icu4c
   - iperf
+  - libassuan
   - libevent
-  - sqlite
+  - libffi
+  - libgcrypt
+  - libgpg-error
+  - libidn2
+  - libksba
+  - libtasn1
+  - libunistring
+  - libusb
+  - libyaml
+  - lua
+  - macvim
   - mcrypt
+  - mhash
+  - ncurses
+  - nettle
   - nmap
   - node
+  - npth
   - nvm
   - openssl
-  - ssh-copy-id
-  - thefuck
+  - p11-kit
   - packer
+  - pcre
+  - pcre2
+  - pinentry
+  - pinentry-mac
+  - powerlevel9k
   - pv
+  - python
+  - python@2
+  - readline
+  - reattach-to-user-namespace
+  - sqlite
+  - ssh-copy-id
+  - the_silver_searcher
+  - thefuck
+  - tmux
+  - unbound
   - wget
+  - xz
+  - zsh
 homebrew_upgrade_all_packages: yes
 homebrew_taps:
   - caskroom/cask
   - homebrew/core
 homebrew_cask_apps:
-  - monolingual
   - 1password
   - atom
-  - iterm2
-  - vagrant
-  - virtualbox
+  - chromedriver
   - docker
   - dropbox
-  # - fing # Download link keeps getting changed, d'oh!
   - firefox
+  - font-hack-nerd-font
   - google-chrome
   - handbrake
+  - iterm2
   - licecap
-  - limechat
   - macvim
+  - monolingual
   - nvalt
+  - powershell
   - sequel-pro
   - skitch
   - slack
