@@ -112,6 +112,7 @@ homebrew_cask_apps:
   - transmit
   - vagrant
   - virtualbox
+  - visual-studio-code
 homebrew_cask_appdir: /Applications
 
 applications:
