@@ -16,6 +16,7 @@
   shell: brew cask install {{ item }}
   with_items: "{{applications}}"
   when: "{{ item not in installed_applications.results|map(attribute='stdout') }}"
+  ignore_errors: true
 
 # Caveats: megasync only works if called from /Applications
 - name: Linking MEGASync with brew-cask
