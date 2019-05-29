@@ -80,7 +80,7 @@ fancy_echo "Running ansible galaxy ..."
 ansible-galaxy install -r requirements.yml
 
 fancy_echo "Running ansible playbook ..."
-ansible-playbook ~/Git/devops-setup/playbook.yml -i ~/Git/devops-setup/inventory
+ansible-playbook ~/Git/devops-setup/playbook.yml -i ~/Git/devops-setup/inventory --ask-become-pass
 
 # Debug Command
 # fancy_echo "DEBUG ::: Running ansible galaxy ..."
