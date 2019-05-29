@@ -94,6 +94,7 @@ homebrew_taps:
 homebrew_cask_apps:
   - 1password
   - atom
+  - alfred
   - chromedriver
   - discord
   - docker

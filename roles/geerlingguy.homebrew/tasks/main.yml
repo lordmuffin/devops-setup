@@ -124,6 +124,7 @@
     loop: "{{ homebrew_cask_apps }}"
     notify:
       - Clear homebrew cache
+    ignore_errors: true
 
   - name: Ensure blacklisted cask applications are not installed.
     homebrew_cask: "name={{ item }} state=absent"
