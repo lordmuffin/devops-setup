@@ -91,6 +91,7 @@ homebrew_taps:
   - caskroom/cask
   - caskroom/fonts
   - homebrew/core
+  - sambadevi/powerlevel9k
 homebrew_cask_apps:
   - 1password
   - atom
