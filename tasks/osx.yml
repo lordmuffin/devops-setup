@@ -73,11 +73,11 @@
 #   command: cp -r /Users/{{user}}/Git/dotfiles/ /Users/{{user}}/.yadr/zsh/prezto-override/
 - name: Clear dotfiles
   file:
-    path: {{ item }}
+    path: "{{ item }}"
     state: absent
   with_items:
     - /Users/ajackson/.zshenv
-    
+
 - name: Install dotfiles
   command: sh install.sh -p "/Users/ajackson"
   args:
