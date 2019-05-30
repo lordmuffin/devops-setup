@@ -88,6 +88,9 @@
   command: chsh -s /usr/local/bin/zsh
   when: osx_login_shell_current_login_shell.stdout != "/usr/local/bin/zsh"
 
+- name: Install powerline font
+  command: pip install --user powerline-status
+
 ## POST INSTALL STEPS / Cask gotchas
 #
 # require manual intervention!
