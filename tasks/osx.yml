@@ -73,7 +73,8 @@
 #   command: cp -r /Users/{{user}}/Git/dotfiles/ /Users/{{user}}/.yadr/zsh/prezto-override/
 - name: Install dotfiles
   command: sh install.sh
-  chdir: ~/Git/dotfiles
+  args:
+    chdir: ~/Git/dotfiles
 - name: Add zsh to list of allowed shells
   lineinfile: dest=/etc/shells line=/usr/local/bin/zsh state=present owner=root group=wheel mode=0644
   become: yes
