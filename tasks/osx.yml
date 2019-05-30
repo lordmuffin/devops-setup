@@ -71,6 +71,13 @@
   git: repo=https://github.com/{{ dotfiles_repo_username }}/dotfiles.git dest=~/Git/dotfiles
 # - name: Install dotfiles
 #   command: cp -r /Users/{{user}}/Git/dotfiles/ /Users/{{user}}/.yadr/zsh/prezto-override/
+- name: Clear dotfiles
+  file:
+    path: {{ item }}
+    state: absent
+  with_items:
+    - /Users/ajackson/.zshenv
+    
 - name: Install dotfiles
   command: sh install.sh -p "/Users/ajackson"
   args:
