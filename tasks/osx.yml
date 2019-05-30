@@ -72,7 +72,7 @@
 # - name: Install dotfiles
 #   command: cp -r /Users/{{user}}/Git/dotfiles/ /Users/{{user}}/.yadr/zsh/prezto-override/
 - name: Install dotfiles
-  command: sh install.sh
+  command: sh install.sh -p "/Users/ajackson"
   args:
     chdir: ~/Git/dotfiles
 - name: Add zsh to list of allowed shells
