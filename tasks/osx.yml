@@ -60,9 +60,6 @@
 ### OSX SETTINGS
 - name: Configure System Settings
   script: scripts/system_settings.sh
-  sudo: true
-
-
 
 ### DOTFILES
 
