@@ -105,6 +105,7 @@ homebrew_cask_apps:
   - font-hack-nerd-font
   - google-chrome
   - handbrake
+  - istat-menus
   - iterm2
   - licecap
   - macvim
